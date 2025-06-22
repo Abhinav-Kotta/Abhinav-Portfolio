@@ -6,22 +6,22 @@ import BlurText from '@/TextAnimations/BlurText/BlurText';
 
 const myProjects: ChromaItem[] = [
   {
-    image: "https://picsum.photos/seed/project1/600/400",
-    title: "E-commerce Platform",
-    subtitle: "A full-stack online store with Stripe integration.",
+    image: "/drift.png",
+    title: "DRIFT",
+    subtitle: "A full-stack VR application for drone racing.",
     handle: "React, Next.js, Stripe",
     borderColor: "#4F46E5",
     gradient: "linear-gradient(145deg,#4F46E5,#1a1a3d)",
-    url: "https://github.com/",
+    url: "https://github.com/Abhinav-Kotta/DRIFT",
   },
   {
-    image: "https://picsum.photos/seed/project2/600/400",
-    title: "Data Visualization Dashboard",
-    subtitle: "An analytics dashboard for visualizing complex data.",
+    image: "/hurricane.png",
+    title: "Hurricane Power Outage Predictor",
+    subtitle: "Power outage prediction model",
     handle: "D3.js, React, Node.js",
     borderColor: "#10B981",
     gradient: "linear-gradient(210deg,#10B981,#1a1a3d)",
-    url: "https://github.com/",
+    url: "https://github.com/aaparcedo/multimodal_outage",
   },
   {
     image: "https://picsum.photos/seed/project3/600/400",
