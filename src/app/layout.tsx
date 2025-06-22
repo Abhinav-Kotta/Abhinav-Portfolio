@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import ClickSpark from "@/Animations/ClickSpark/ClickSpark";
+import Aurora from "@/Backgrounds/Aurora/Aurora";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +26,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
-        {children}
+        <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-70">
+          <Aurora />
+        </div>
+
+        <ClickSpark>
+          <Navbar />
+          {children}
+        </ClickSpark>
       </body>
     </html>
   );

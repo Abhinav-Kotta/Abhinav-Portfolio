@@ -1,5 +1,48 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+.cool-title {
+  background: linear-gradient(
+    45deg,
+    #667eea 0%,
+    #764ba2 25%,
+    #f093fb 50%,
+    #f5576c 75%,
+    #4facfe 100%
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+  filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.3));
+  animation: gradientShift 3s ease infinite;
+}
+
+.cool-title span {
+  background: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
