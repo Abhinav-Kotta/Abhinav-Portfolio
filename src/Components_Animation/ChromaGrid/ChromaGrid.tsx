@@ -98,7 +98,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
       ref={rootRef}
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className={`relative w-full flex flex-wrap justify-center items-start gap-3 ${className}`}
+      className={`relative w-full columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 ${className}`}
       style={
         {
           "--r": `${radius}px`,
@@ -112,7 +112,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           key={i}
           onMouseMove={handleCardMove}
           onClick={() => handleCardClick(c.url)}
-          className="group relative flex flex-col w-[300px] rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer"
+          className="group relative flex flex-col w-full rounded-[20px] overflow-hidden border-2 border-transparent transition-colors duration-300 cursor-pointer break-inside-avoid mb-4"
           style={
             {
               "--card-border": c.borderColor || "transparent",
@@ -129,26 +129,39 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
             }}
           />
           <div className="relative z-10 flex-1 p-[10px] box-border">
-            <img
-              src={c.image}
-              alt={c.title}
-              loading="lazy"
-              className="w-full h-full object-cover rounded-[10px]"
-            />
+            {c.image.endsWith('.mp4') || c.image.endsWith('.webm') || c.image.endsWith('.mov') ? (
+              <video
+                src={c.image}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover rounded-[10px]"
+              />
+            ) : (
+              <img
+                src={c.image}
+                alt={c.title}
+                loading="lazy"
+                className="w-full h-full object-cover rounded-[10px]"
+              />
+            )}
           </div>
-          <footer className="relative z-10 p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">
-            <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
-            {c.handle && (
-              <span className="text-[0.95rem] opacity-80 text-right">
-                {c.handle}
-              </span>
-            )}
-            <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
-            {c.location && (
-              <span className="text-[0.85rem] opacity-85 text-right">
-                {c.location}
-              </span>
-            )}
+          <footer className="relative z-10 p-3 text-white font-sans">
+            <div className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 mb-2">
+              <h3 className="m-0 text-[1.05rem] font-semibold">{c.title}</h3>
+              {c.handle && (
+                <span className="text-[0.95rem] opacity-80 text-right">
+                  {c.handle}
+                </span>
+              )}
+            </div>
+            <div className="space-y-1">
+              <p className="m-0 text-[0.85rem] opacity-85">{c.subtitle}</p>
+              {c.location && (
+                <p className="m-0 text-[0.85rem] opacity-85">{c.location}</p>
+              )}
+            </div>
           </footer>
         </article>
       ))}
@@ -174,7 +187,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           maskImage:
             "radial-gradient(circle var(--r) at var(--x) var(--y),white 0%,white 15%,rgba(255,255,255,0.90)30%,rgba(255,255,255,0.78)45%,rgba(255,255,255,0.65)60%,rgba(255,255,255,0.50)75%,rgba(255,255,255,0.32)88%,transparent 100%)",
           WebkitMaskImage:
-            "radial-gradient(circle var(--r) at var(--x) var(--y),white 0%,white 15%,rgba(255,255,255,0.90)30%,rgba(255,255,255,0.78)45%,rgba(255,255,255,0.65)60%,rgba(255,255,255,0.50)75%,rgba(255,255,255,0.32)88%,transparent 100%)",
+            "radial-gradient(circle var(--x) at var(--y),white 0%,white 15%,rgba(255,255,255,0.90)30%,rgba(255,255,255,0.78)45%,rgba(255,255,255,0.65)60%,rgba(255,255,255,0.50)75%,rgba(255,255,255,0.32)88%,transparent 100%)",
           opacity: 1,
         }}
       />

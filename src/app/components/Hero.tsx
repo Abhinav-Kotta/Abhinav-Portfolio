@@ -4,11 +4,19 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import BlurText from '@/TextAnimations/BlurText/BlurText';
 import AnimatedContent from '@/Animations/AnimatedContent/AnimatedContent';
-import Image from 'next/image';
+import ProfileCard from '@/Components_Animation/ProfileCard/ProfileCard';
 
 const Hero = () => {
   const handleAnimationComplete = () => {
     console.log('Name animation completed!');
+  };
+
+  const handleContactClick = () => {
+    // Scroll to contact section or handle contact action
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -92,27 +100,26 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - Profile Picture */}
+            {/* Right Column - Profile Card */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex justify-center lg:justify-end"
             >
-              <div className="relative w-80 h-80 shadow-2xl rounded-full">
-                {/* Decorative spinning ring as background */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-spin-slow"></div>
-
-                {/* Container for the image, with padding to create the border effect */}
-                <div className="absolute inset-1 bg-gray-900 rounded-full overflow-hidden">
-                  <Image
-                    src="/professional_headshot.jpeg"
-                    alt="Abhinav Kotta"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
+              <ProfileCard
+                avatarUrl="/professional_headshot-removebg-preview.png"
+                name="Abhinav Kotta"
+                title="Software Developer"
+                handle="abhinavkotta"
+                status="Available for work"
+                contactText="Get in touch"
+                showUserInfo={true}
+                onContactClick={handleContactClick}
+                enableTilt={true}
+                showBehindGradient={true}
+                className="w-full max-w-sm"
+              />
             </motion.div>
           </div>
         </div>
