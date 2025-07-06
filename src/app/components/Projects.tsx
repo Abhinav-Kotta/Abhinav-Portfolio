@@ -42,7 +42,7 @@ const myProjects: ChromaItem[] = [
     url: "https://kkhayal.com/",
   },
     {
-    image: "https://picsum.photos/seed/project5/600/400",
+    image: "/BTGen.svg",
     title: "Behavior Tree Generator",
     subtitle: "Automated Behavior Tree creation for military simulations.",
     handle: "AWS, Node.js, Express",

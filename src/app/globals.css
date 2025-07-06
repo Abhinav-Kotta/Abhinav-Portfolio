@@ -67,3 +67,80 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom Vertical Timeline Styles */
+.vertical-timeline-element {
+  margin: 2em 0;
+}
+
+.vertical-timeline-element-content {
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.vertical-timeline-element-content:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.vertical-timeline-element-icon {
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease;
+}
+
+.vertical-timeline-element-icon:hover {
+  transform: scale(1.1);
+}
+
+.vertical-timeline-element-date {
+  color: #6b7280 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+}
+
+.vertical-timeline-element-title {
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.vertical-timeline-element-subtitle {
+  font-weight: 500 !important;
+  margin-bottom: 1rem !important;
+  opacity: 0.9 !important;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .vertical-timeline-element-date {
+    color: #9ca3af !important;
+  }
+  
+  .vertical-timeline-element-content {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Timeline line styling */
+.vertical-timeline::before {
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+  width: 4px !important;
+  border-radius: 2px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vertical-timeline-element-content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 1.5rem !important;
+  }
+  
+  .vertical-timeline-element-date {
+    font-size: 0.8rem !important;
+  }
+}

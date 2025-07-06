@@ -29,6 +29,7 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
+        suppressHydrationWarning={true}
       >
         <div className="fixed top-0 left-0 w-full h-full -z-10 opacity-70">
           <Aurora />

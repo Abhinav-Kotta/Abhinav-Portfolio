@@ -4,7 +4,7 @@
 	Installed from https://reactbits.dev/ts/tailwind/
 */
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 
 export interface ChromaItem {
@@ -42,6 +42,11 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
   const setX = useRef<SetterFn | null>(null);
   const setY = useRef<SetterFn | null>(null);
   const pos = useRef({ x: 0, y: 0 });
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -93,6 +98,39 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     c.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
   };
 
+  const renderMedia = (item: ChromaItem) => {
+    const isVideo = item.image.endsWith('.mp4') || item.image.endsWith('.webm') || item.image.endsWith('.mov');
+    
+    if (isVideo && isClient) {
+      return (
+        <video
+          src={item.image}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover rounded-[10px]"
+        />
+      );
+    } else if (isVideo && !isClient) {
+      // Show a placeholder during SSR
+      return (
+        <div className="w-full h-full bg-gray-200 dark:bg-gray-700 rounded-[10px] flex items-center justify-center">
+          <div className="text-gray-500 dark:text-gray-400 text-sm">Video Loading...</div>
+        </div>
+      );
+    } else {
+      return (
+        <img
+          src={item.image}
+          alt={item.title}
+          loading="lazy"
+          className="w-full h-full object-cover rounded-[10px]"
+        />
+      );
+    }
+  };
+
   return (
     <div
       ref={rootRef}
@@ -129,23 +167,7 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
             }}
           />
           <div className="relative z-10 flex-1 p-[10px] box-border">
-            {c.image.endsWith('.mp4') || c.image.endsWith('.webm') || c.image.endsWith('.mov') ? (
-              <video
-                src={c.image}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover rounded-[10px]"
-              />
-            ) : (
-              <img
-                src={c.image}
-                alt={c.title}
-                loading="lazy"
-                className="w-full h-full object-cover rounded-[10px]"
-              />
-            )}
+            {renderMedia(c)}
           </div>
           <footer className="relative z-10 p-3 text-white font-sans">
             <div className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 mb-2">
