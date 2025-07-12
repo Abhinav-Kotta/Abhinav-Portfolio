@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import emailjs from '@emailjs/browser';
+import { useState } from 'react';
 import BlurText from '@/TextAnimations/BlurText/BlurText';
 import AnimatedContent from '@/Animations/AnimatedContent/AnimatedContent';
 
@@ -21,11 +20,6 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Initialize EmailJS
-  useEffect(() => {
-    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
-  }, []);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -40,81 +34,24 @@ const Contact = () => {
     setSubmitStatus('idle');
     
     try {
-      const formElement = e.target as HTMLFormElement;
-      
-      // Send notification to portfolio owner (simple form data)
-      const notificationResult = await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-        'default_template', // Use default template for notification
-        formElement,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
-      );
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // Send auto-reply to user (simple approach without template)
-      try {
-        // Create a simple auto-reply email
-        const autoReplyParams = {
-          to_name: formData.name,
-          to_email: formData.email,
-          from_name: 'Abhinav Kotta',
-          from_email: 'abhinavkotta.io@gmail.com',
-          subject: 'Thank you for reaching out - Abhinav Kotta',
-          message: `Hello ${formData.name},
+      const result = await response.json();
 
-Thank you for contacting me through my portfolio! I've received your message and will get back to you as soon as possible.
-
-Your message:
-${formData.message}
-
-I typically respond within 24-48 hours. If you have an urgent inquiry, feel free to reach out to me directly at abhinavkotta.io@gmail.com.
-
-Best regards,
-Abhinav Kotta
-Software Developer`
-        };
-
-        await emailjs.send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-          'default_template', // Use default template for auto-reply
-          autoReplyParams,
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
-        );
-      } catch (autoReplyError) {
-        console.warn('Auto-reply failed, but notification was sent:', autoReplyError);
-        // Don't fail the entire submission if auto-reply fails
-      }
-
-      if (notificationResult.status === 200) {
+      if (response.ok && result.success) {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', message: '' });
         
         // Reset status after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
-        throw new Error('Failed to send email');
-      }
-
-      // After sending the notification to yourself, add this block:
-      if (process.env.NEXT_PUBLIC_EMAILJS_AUTO_REPLY_TEMPLATE_ID) {
-        try {
-          const autoReplyParams = {
-            from_name: formData.name,
-            from_email: formData.email,
-            message: formData.message,
-            to_name: 'Abhinav Kotta',
-            reply_to: 'abhinavkotta.io@gmail.com',
-          };
-
-          await emailjs.send(
-            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-            process.env.NEXT_PUBLIC_EMAILJS_AUTO_REPLY_TEMPLATE_ID,
-            autoReplyParams,
-            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
-          );
-        } catch (autoReplyError) {
-          console.warn('Auto-reply failed, but notification was sent:', autoReplyError);
-          // Don't fail the entire submission if auto-reply fails
-        }
+        throw new Error(result.error || 'Failed to send email');
       }
     } catch (error) {
       console.error('Email sending failed:', error);
