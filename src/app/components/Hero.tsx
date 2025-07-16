@@ -56,11 +56,10 @@ const Hero = () => {
                 />
               </h1>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-gray-700 dark:text-gray-300">
-                Software Developer
+                AI/ML Software Developer
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 md:mb-12 max-w-2xl mx-auto lg:mx-0 px-4 lg:px-0">
-                I build elegant solutions to complex problems. Specializing in full-stack development,
-                I create performant and scalable applications that make a difference.
+                I am an AI/ML Software Developer passionate about building elegant solutions to complex problems. Specializing in full-stack and AI/ML development, I create performant and scalable applications that make a difference.
               </p>
               
               <AnimatedContent delay={0.2} duration={0.6}>
@@ -79,25 +78,6 @@ const Hero = () => {
                   </Link>
                 </div>
               </AnimatedContent>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400 px-4 lg:px-0">
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                  React
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                  TypeScript
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                  Node.js
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                  Python
-                </span>
-              </div>
             </motion.div>
 
             {/* Right Column - Profile Card */}
@@ -108,7 +88,7 @@ const Hero = () => {
               className="flex justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0"
             >
               <ProfileCard
-                avatarUrl="/professional_headshot-removebg-preview.png"
+                avatarUrl="/profile_pic.png"
                 name="Abhinav Kotta"
                 title="Software Developer"
                 handle="abhinavkotta"
