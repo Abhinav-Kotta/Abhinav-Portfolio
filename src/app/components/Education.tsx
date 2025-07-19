@@ -118,7 +118,7 @@ const Education = () => {
       transition={{ duration: 0.6, delay: 0.6 }}
       className="mt-6 md:mt-8"
     >
-      <div className="flex items-center justify-center lg:justify-start gap-8">
+      <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8">
         {educationData.map((item, index) => {
           const progress = calculateProgress(item.startYear, item.endYear);
           const animatedValue = animatedProgress[item.university] || 0;
@@ -132,7 +132,7 @@ const Education = () => {
               className="group relative flex items-center"
             >
               {/* Progress Bar with Logo */}
-              <div className="relative w-20 h-20 mr-4">
+              <div className="relative w-20 h-20 mr-3 sm:mr-4">
                 {/* Progress Bar - Border Outline */}
                 <motion.div 
                   className="absolute inset-0 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
@@ -184,7 +184,7 @@ const Education = () => {
               
               {/* Degree Info */}
               <motion.div 
-                className="text-sm"
+                className="text-sm min-w-0"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 + index * 0.2 }}

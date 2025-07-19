@@ -91,7 +91,7 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex justify-center lg:justify-end order-1 lg:order-2 mb-8 lg:mb-0"
+              className="flex justify-center order-1 lg:order-2 mb-8 lg:mb-0"
             >
               <ProfileCard
                 avatarUrl="/profile_pic.png"
