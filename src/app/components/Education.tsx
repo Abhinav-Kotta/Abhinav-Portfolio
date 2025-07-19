@@ -210,7 +210,18 @@ const Education = () => {
                   <div className="text-gray-300">{item.university}</div>
                   <div className="text-gray-400">{item.description}</div>
                   <div className="text-blue-300">{item.timespan}</div>
-                  <div className="text-gray-400">Progress: {Math.round(animatedValue)}%</div>
+                  <div className="text-gray-400">
+                    {item.university === "Cornell Tech" 
+                      ? "Focus: AI/ML Systems & Entrepreneurship" 
+                      : "Focus: Software Engineering & Algorithms"
+                    }
+                  </div>
+                  <div className="text-gray-400">
+                    {item.university === "Cornell Tech" 
+                      ? "Location: New York City" 
+                      : "Location: Orlando, Florida"
+                    }
+                  </div>
                   <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-gray-900"></div>
                 </div>
               </div>
