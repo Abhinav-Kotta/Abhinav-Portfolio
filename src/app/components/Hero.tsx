@@ -5,6 +5,7 @@ import Link from 'next/link';
 import BlurText from '@/TextAnimations/BlurText/BlurText';
 import AnimatedContent from '@/Animations/AnimatedContent/AnimatedContent';
 import ProfileCard from '@/Components_Animation/ProfileCard/ProfileCard';
+import Education from './Education';
 
 const Hero = () => {
   const handleAnimationComplete = () => {
@@ -78,6 +79,11 @@ const Hero = () => {
                   </Link>
                 </div>
               </AnimatedContent>
+              
+              {/* Education Section */}
+              <div className="px-4 lg:px-0">
+                <Education />
+              </div>
             </motion.div>
 
             {/* Right Column - Profile Card */}
