@@ -118,7 +118,7 @@ const Education = () => {
       transition={{ duration: 0.6, delay: 0.6 }}
       className="mt-6 md:mt-8"
     >
-      <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 sm:gap-8">
+      <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 sm:gap-12">
         {educationData.map((item, index) => {
           const progress = calculateProgress(item.startYear, item.endYear);
           const animatedValue = animatedProgress[item.university] || 0;
