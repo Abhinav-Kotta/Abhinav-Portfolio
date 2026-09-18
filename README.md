@@ -20,6 +20,14 @@ npm run preview
 
 The production site is generated in `dist/`. It is a static site with no server-side runtime, account system, or secret environment variables.
 
+## Deploy on Vercel
+
+The root `vercel.json` explicitly sets the framework to Vite, installs with `npm ci`, builds with `npm run build`, and serves `dist/`. These values override an older Next.js framework/build configuration in the Vercel project.
+
+In Vercel's project settings, keep **Root Directory** at the repository root (leave the field empty), where `package.json` and `vercel.json` live. If you place this project in a subfolder, select that subfolder instead.
+
+Commit and push `vercel.json` to trigger a new deployment. A Git force push updates repository contents but does not reset the Vercel project's saved settings. A “No Next.js version detected” error for this Vite site indicates that the deployment is still using the Next.js preset; do not add Next.js as a workaround.
+
 ## Edit
 
 - `src/content.js`: personal details, six projects, experience, and skill groups.
