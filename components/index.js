@@ -1,4 +1,3 @@
-export * from './Navigation';
-export * from './Hero';
-export * from './PlanetInfo';
-export * from './LoadingScreen';
+export { Navigation } from './Navigation.js';
+export { Hero } from './Hero.js';
+export { ProjectCard } from './ProjectCard.js';

@@ -1,0 +1,4 @@
+import { projectIllustration } from './Illustrations.js';
+export function ProjectCard(project) {
+  return `<article class="project-card" data-category="${project.category}"><button class="project-preview ${project.id}" data-project="${project.id}" aria-label="Read about ${project.title}"><span class="project-index">No. ${project.number}</span>${projectIllustration(project.id)}<span class="preview-note">${project.note}</span><span class="preview-open" aria-hidden="true"><i data-lucide="arrow-up-right"></i></span></button><div class="project-copy"><p class="project-category">${project.categoryLabel}</p><h3><button data-project="${project.id}">${project.title}</button></h3><p>${project.description}</p><ul class="tags" aria-label="Technologies">${project.tags.map(tag => `<li>${tag}</li>`).join('')}</ul><button class="text-link project-read" data-project="${project.id}">Open the project notes <i data-lucide="arrow-up-right"></i></button></div></article>`;
+}

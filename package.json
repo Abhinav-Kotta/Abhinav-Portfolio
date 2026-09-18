@@ -1,9 +1,19 @@
 {
   "dependencies": {
-    "save": "^2.9.0",
-    "three": "^0.171.0"
+    "@fontsource/kalam": "^5.3.0",
+    "@fontsource/patrick-hand": "^5.3.0",
+    "lucide": "^1.47.0"
   },
   "devDependencies": {
-    "vite": "^6.0.6"
+    "vite": "^6.4.3"
+  },
+  "name": "abhinav-sketchbook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
   }
 }
